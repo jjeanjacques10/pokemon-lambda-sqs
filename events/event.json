@@ -1,0 +1,224 @@
+{
+    "Records": [
+        {
+            "eventID": "4b2df3d85ff9a4711e71ece705416ddc",
+            "eventName": "MODIFY",
+            "eventVersion": "1.1",
+            "eventSource": "aws:dynamodb",
+            "awsRegion": "us-east-1",
+            "dynamodb": {
+                "ApproximateCreationDateTime": 1632884712.0,
+                "Keys": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    }
+                },
+                "NewImage": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    },
+                    "status": {
+                        "S": "hidden"
+                    }
+                },
+                "OldImage": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    },
+                    "status": {
+                        "S": "caught"
+                    }
+                },
+                "SequenceNumber": "9200000000012053966302",
+                "SizeBytes": 75,
+                "StreamViewType": "NEW_AND_OLD_IMAGES"
+            },
+            "eventSourceARN": "arn:aws:dynamodb:us-east-1: 416068129208:table/PokemonWorld/stream/2021-09-29T02: 45: 07.662"
+        },
+        {
+            "eventID": "4b2df3d85ff9a4711e71ece705416ddc",
+            "eventName": "MODIFY",
+            "eventVersion": "1.1",
+            "eventSource": "aws:dynamodb",
+            "awsRegion": "us-east-1",
+            "dynamodb": {
+                "ApproximateCreationDateTime": 1632884712.0,
+                "Keys": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    }
+                },
+                "NewImage": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    },
+                    "status": {
+                        "S": "hidden"
+                    }
+                },
+                "OldImage": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    },
+                    "status": {
+                        "S": "caught"
+                    }
+                },
+                "SequenceNumber": "9200000000012053966302",
+                "SizeBytes": 75,
+                "StreamViewType": "NEW_AND_OLD_IMAGES"
+            },
+            "eventSourceARN": "arn:aws:dynamodb:us-east-1: 416068129208:table/PokemonWorld/stream/2021-09-29T02: 45: 07.662"
+        },
+        {
+            "eventID": "4b2df3d85ff9a4711e71ece705416ddc",
+            "eventName": "MODIFY",
+            "eventVersion": "1.1",
+            "eventSource": "aws:dynamodb",
+            "awsRegion": "us-east-1",
+            "dynamodb": {
+                "ApproximateCreationDateTime": 1632884712.0,
+                "Keys": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    }
+                },
+                "NewImage": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    },
+                    "status": {
+                        "S": "hidden"
+                    }
+                },
+                "OldImage": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    },
+                    "status": {
+                        "S": "caught"
+                    }
+                },
+                "SequenceNumber": "9200000000012053966302",
+                "SizeBytes": 75,
+                "StreamViewType": "NEW_AND_OLD_IMAGES"
+            },
+            "eventSourceARN": "arn:aws:dynamodb:us-east-1: 416068129208:table/PokemonWorld/stream/2021-09-29T02: 45: 07.662"
+        },
+        {
+            "eventID": "4b2df3d85ff9a4711e71ece705416ddc",
+            "eventName": "MODIFY",
+            "eventVersion": "1.1",
+            "eventSource": "aws:dynamodb",
+            "awsRegion": "us-east-1",
+            "dynamodb": {
+                "ApproximateCreationDateTime": 1632884712.0,
+                "Keys": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    }
+                },
+                "NewImage": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    },
+                    "status": {
+                        "S": "hidden"
+                    }
+                },
+                "OldImage": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    },
+                    "status": {
+                        "S": "caught"
+                    }
+                },
+                "SequenceNumber": "9200000000012053966302",
+                "SizeBytes": 75,
+                "StreamViewType": "NEW_AND_OLD_IMAGES"
+            },
+            "eventSourceARN": "arn:aws:dynamodb:us-east-1: 416068129208:table/PokemonWorld/stream/2021-09-29T02: 45: 07.662"
+        },
+        {
+            "eventID": "4b2df3d85ff9a4711e71ece705416ddc",
+            "eventName": "MODIFY",
+            "eventVersion": "1.1",
+            "eventSource": "aws:dynamodb",
+            "awsRegion": "us-east-1",
+            "dynamodb": {
+                "ApproximateCreationDateTime": 1632884712.0,
+                "Keys": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    }
+                },
+                "NewImage": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    },
+                    "status": {
+                        "S": "hidden"
+                    }
+                },
+                "OldImage": {
+                    "name": {
+                        "S": "bulbasaur"
+                    },
+                    "id": {
+                        "N": "1"
+                    },
+                    "status": {
+                        "S": "caught"
+                    }
+                },
+                "SequenceNumber": "9200000000012053966302",
+                "SizeBytes": 75,
+                "StreamViewType": "NEW_AND_OLD_IMAGES"
+            },
+            "eventSourceARN": "arn:aws:dynamodb:us-east-1: 416068129208:table/PokemonWorld/stream/2021-09-29T02: 45: 07.662"
+        }
+    ]
+}

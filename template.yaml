@@ -1,0 +1,120 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  pokemon-lambda-sqs
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 10
+
+Resources:
+  PokemonFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: pokemon_handler/
+      Handler: lambda_handler.lambda_handler
+      Runtime: python3.7
+      MemorySize: 450
+      Events:
+        DynamoDBTableStream:
+          Type: DynamoDB
+          Properties:
+            Stream:
+              'Fn::GetAtt':
+                - PokemonWorldTable
+                - StreamArn
+            StartingPosition: LATEST
+            BatchSize: 1
+      Environment:
+        Variables:
+          AWS_ACCESS_KEY_ID: {{}}
+          AWS_SECRET_ACCESS_KEY: {{}}
+          POKEMON_QUEUE: pokeball-queue
+          POKEMON_QUEUE_DLQ: arn:aws:sqs:us-east-1:416068129208:pokeball-queue-dlq
+    DependsOn:
+      - PokeballQueue
+      - PokemonWorldTable
+      - LambdaRole
+  PokemonWorldTable:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      StreamSpecification:
+        StreamViewType: NEW_IMAGE
+  PokeballQueue:
+    Type: 'AWS::SQS::Queue'
+    Properties:
+      DelaySeconds: 0
+      VisibilityTimeout: 120
+      RedrivePolicy:
+        deadLetterTargetArn:
+          Fn::GetAtt:
+            - PokeballQueueDlq
+            - "Arn"
+        maxReceiveCount: 10
+  PokeballQueueDlq:
+    Type: 'AWS::SQS::Queue'
+    Properties:
+      DelaySeconds: 0
+      VisibilityTimeout: 120
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          # Allow Lambda to assume this role
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: "/"
+      Policies:
+        - PolicyName: LambdaRolePolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              # Allow Lambda to write logs to CloudWatch
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: arn:aws:logs:*:*:*
+              # Allow Lambda to read from the DynamoDB stream
+              - Effect: Allow
+                Action:
+                  - dynamodb:DescribeStream
+                  - dynamodb:GetRecords
+                  - dynamodb:GetShardIterator
+                  - dynamodb:ListStreams
+                Resource: "*"
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  PokemonFunctionApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+  PokemonFunction:
+    Description: "Hello World Lambda Function ARN"
+    Value: !GetAtt PokemonFunction.Arn
+  PokemonFunctionIamRole:
+    Description: "Implicit IAM Role created for Hello World function"
+    Value: !GetAtt PokemonFunctionRole.Arn
+  PokemonWorldStreamArn:
+    Value: !GetAtt PokemonWorldTable.StreamArn
+    Export:
+      Name: StreamArn
